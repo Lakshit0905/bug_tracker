@@ -11,6 +11,8 @@ Strategy:
 import os
 
 os.environ["APP_ENV"] = "test"  # must happen before the app/settings are imported
+os.environ["BCRYPT_ROUNDS"] = "4"  # fast hashing in tests; production default is 12
+os.environ["AUTH_RATE_LIMIT_PER_MINUTE"] = "10000"  # the limiter has its own dedicated tests
 
 from collections.abc import Generator, Iterator
 from pathlib import Path

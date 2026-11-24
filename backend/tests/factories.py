@@ -6,9 +6,11 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from app.core.enums import BugStatus, Category, RoleName, Severity
+from app.core.security import create_access_token, hash_password
 from app.models import Bug, Role, User
 
 _seq = count(1)
+DEFAULT_PASSWORD = "Passw0rd123"
 
 
 def get_role(db: Session, name: RoleName) -> Role:
@@ -20,13 +22,18 @@ def make_user(db: Session, role: RoleName = RoleName.TESTER, **overrides) -> Use
     user = User(
         email=overrides.pop("email", f"user{n}@example.com"),
         full_name=overrides.pop("full_name", f"Test User {n}"),
-        password_hash=overrides.pop("password_hash", "not-a-real-hash"),
+        password_hash=hash_password(overrides.pop("password", DEFAULT_PASSWORD)),
         role=get_role(db, role),
         **overrides,
     )
     db.add(user)
     db.flush()
     return user
+
+
+def auth_headers(user: User) -> dict[str, str]:
+    token, _ = create_access_token(user.id)
+    return {"Authorization": f"Bearer {token}"}
 
 
 def make_bug(db: Session, reporter: User, **overrides) -> Bug:

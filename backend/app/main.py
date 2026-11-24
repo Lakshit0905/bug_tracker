@@ -8,6 +8,7 @@ from app.api.v1.routes import health
 from app.core.config import get_settings
 from app.core.exceptions import register_exception_handlers
 from app.core.logging import REQUEST_ID_HEADER, RequestContextMiddleware, configure_logging
+from app.core.rate_limit import SlidingWindowRateLimiter
 
 API_PREFIX = "/api/v1"
 
@@ -23,8 +24,13 @@ def create_app() -> FastAPI:
             "REST API for BugTrackr — a role-based software bug tracking system with "
             "AI-assisted decision support. All endpoints except auth and health require a Bearer JWT."
         ),
-        openapi_tags=[{"name": "health", "description": "Liveness and readiness probes"}],
+        openapi_tags=[
+            {"name": "auth", "description": "Registration, login, token refresh and logout"},
+            {"name": "users", "description": "Own profile, and user administration (Admin)"},
+            {"name": "health", "description": "Liveness and readiness probes"},
+        ],
     )
+    app.state.auth_rate_limiter = SlidingWindowRateLimiter(settings.auth_rate_limit_per_minute, 60.0)
 
     app.add_middleware(
         CORSMiddleware,

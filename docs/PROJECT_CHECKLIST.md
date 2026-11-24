@@ -25,13 +25,16 @@ Rule: a test is only ticked when it has actually been executed and passed; the e
 - [x] Pytest infrastructure: dedicated test DB, migrations run each session, per-test rollback, data factories
 - [x] 58 tests executed and passing, 97% coverage, ruff clean (`docs/test-reports/phase2-backend.md`)
 
-## Phase 3 — Authentication and RBAC
-- [ ] Register / login / refresh / logout
-- [ ] bcrypt hashing, JWT
-- [ ] `get_current_user`, `require_roles`
-- [ ] Admin seed script
-- [ ] User management endpoints
-- [ ] Tests: auth + permissions
+## Phase 3 — Authentication and RBAC ✅
+- [x] Register / login / refresh (rotation + reuse detection) / logout
+- [x] bcrypt hashing (72-byte guard), JWT with pinned algorithm and required claims
+- [x] `get_current_user`, `require_roles`, `require_capability`; permission matrix in code
+- [x] Login/register/refresh rate limiting (429 + Retry-After)
+- [x] Admin seed script (idempotent)
+- [x] Profile endpoints (view, rename, change password) and admin user management (search, role, activate/deactivate)
+- [x] 266 tests executed and passing, 98% coverage; 4/4 deliberate security mutations caught (`docs/test-reports/phase3-auth-rbac.md`)
+- [x] Live end-to-end check with curl against the dev DB
+- [x] Security design doc (`docs/06-authentication-and-rbac.md`)
 
 ## Phase 4 — Core bug management
 - [ ] Bug CRUD + validation

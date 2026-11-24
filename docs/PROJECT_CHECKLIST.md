@@ -16,13 +16,14 @@ Rule: a test is only ticked when it has actually been executed and passed; the e
 - [x] Git repository initialised, `.gitignore`, `.env.example`
 - [x] Branching strategy & GitHub Issues structure (`docs/04-development-workflow.md`)
 
-## Phase 2 — Database schema and backend setup
-- [ ] FastAPI app factory, config, logging, error envelope
-- [ ] SQLAlchemy models for all tables
-- [ ] Alembic initial migration
-- [ ] ER diagram
-- [ ] `/health` and `/health/ready`
-- [ ] Pytest infrastructure with test database
+## Phase 2 — Database schema and backend setup ✅
+- [x] FastAPI app factory, config (pydantic-settings), structured JSON logging + request IDs, error envelope
+- [x] SQLAlchemy models for all v1 tables (8 tables; AI tables arrive with the v2 migration)
+- [x] Alembic initial migration (reviewed; pg_trgm + role seed added by hand); downgrade verified
+- [x] ER diagram + database design doc (`docs/05-database-design.md`)
+- [x] `/health` and `/health/ready`; Swagger at `/docs`
+- [x] Pytest infrastructure: dedicated test DB, migrations run each session, per-test rollback, data factories
+- [x] 58 tests executed and passing, 97% coverage, ruff clean (`docs/test-reports/phase2-backend.md`)
 
 ## Phase 3 — Authentication and RBAC
 - [ ] Register / login / refresh / logout

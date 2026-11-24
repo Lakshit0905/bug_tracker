@@ -4,7 +4,7 @@
 
 A full-stack, role-based defect-tracking platform (React + FastAPI + PostgreSQL) with an AI decision-support layer that suggests — but never decides — categories, priorities, severities, duplicates, summaries and assignees.
 
-> **Current status:** Phase 1 complete (requirements & architecture). See [`docs/PROJECT_CHECKLIST.md`](docs/PROJECT_CHECKLIST.md).
+> **Current status:** Phase 2 complete (database schema, backend foundation, 58 passing tests). See [`docs/PROJECT_CHECKLIST.md`](docs/PROJECT_CHECKLIST.md).
 
 ## Releases
 
@@ -21,6 +21,7 @@ A full-stack, role-based defect-tracking platform (React + FastAPI + PostgreSQL)
 | [02 Architecture](docs/02-architecture.md) | System, backend, frontend, testing and deployment architecture; API plan |
 | [03 Technology stack](docs/03-technology-stack.md) | Pinned versions and rationale |
 | [04 Development workflow](docs/04-development-workflow.md) | Branching, commits, issues, release gates |
+| [05 Database design](docs/05-database-design.md) | ER diagram, constraints, indexes, migrations |
 | [Checklist](docs/PROJECT_CHECKLIST.md) | Completed / pending work |
 
 ## Repository layout
@@ -36,4 +37,6 @@ bugtracker/
 └── .github/          CI workflows, issue templates
 ```
 
-Setup and run instructions are added as each phase makes something runnable (Phase 2 onward).
+## Quick start (backend)
+
+See [`backend/README.md`](backend/README.md): create the databases, `pip install -r requirements-dev.txt`, `alembic upgrade head`, `uvicorn app.main:app --reload`, then open http://localhost:8000/docs. Run `pytest` for the test suite.

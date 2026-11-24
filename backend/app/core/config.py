@@ -24,7 +24,7 @@ class Settings(BaseSettings):
 
     # Application
     app_name: str = "BugTrackr API"
-    app_version: str = "0.2.0"
+    app_version: str = "0.3.0"
     app_env: Literal["development", "test", "production"] = "development"
     log_level: str = "INFO"
     cors_origins: str = "http://localhost:5173,http://localhost:8080"
@@ -43,6 +43,14 @@ class Settings(BaseSettings):
     jwt_algorithm: str = "HS256"
     jwt_access_token_minutes: int = 30
     jwt_refresh_token_days: int = 7
+    jwt_issuer: str = "bugtrackr"
+    bcrypt_rounds: int = Field(default=12, ge=4, le=16)
+    auth_rate_limit_per_minute: int = Field(default=10, ge=1)
+
+    # First administrator (scripts/seed_admin.py)
+    admin_email: str | None = None
+    admin_password: str | None = None
+    admin_full_name: str = "System Administrator"
 
     # Attachments
     upload_dir: str = "./uploads"

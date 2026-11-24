@@ -22,10 +22,13 @@ class AppError(Exception):
     status_code: int = status.HTTP_400_BAD_REQUEST
     code: str = "BAD_REQUEST"
 
-    def __init__(self, message: str, *, details: Any = None, code: str | None = None) -> None:
+    def __init__(
+        self, message: str, *, details: Any = None, code: str | None = None, headers: dict[str, str] | None = None
+    ) -> None:
         super().__init__(message)
         self.message = message
         self.details = details
+        self.headers = headers
         if code:
             self.code = code
 
@@ -33,6 +36,10 @@ class AppError(Exception):
 class AuthenticationError(AppError):
     status_code = status.HTTP_401_UNAUTHORIZED
     code = "UNAUTHENTICATED"
+
+    def __init__(self, message: str = "Authentication required", **kwargs: Any) -> None:
+        kwargs.setdefault("headers", {"WWW-Authenticate": "Bearer"})
+        super().__init__(message, **kwargs)
 
 
 class PermissionDeniedError(AppError):
@@ -57,6 +64,11 @@ class InvalidTransitionError(ConflictError):
 class DomainValidationError(AppError):
     status_code = status.HTTP_422_UNPROCESSABLE_CONTENT
     code = "VALIDATION_ERROR"
+
+
+class RateLimitedError(AppError):
+    status_code = status.HTTP_429_TOO_MANY_REQUESTS
+    code = "RATE_LIMITED"
 
 
 class ServiceUnavailableError(AppError):
@@ -91,7 +103,11 @@ def error_body(code: str, message: str, details: Any = None) -> dict[str, Any]:
 def register_exception_handlers(app: FastAPI) -> None:
     @app.exception_handler(AppError)
     async def _app_error(_: Request, exc: AppError) -> JSONResponse:
-        return JSONResponse(status_code=exc.status_code, content=error_body(exc.code, exc.message, exc.details))
+        return JSONResponse(
+            status_code=exc.status_code,
+            content=error_body(exc.code, exc.message, exc.details),
+            headers=exc.headers,
+        )
 
     @app.exception_handler(RequestValidationError)
     async def _validation_error(_: Request, exc: RequestValidationError) -> JSONResponse:

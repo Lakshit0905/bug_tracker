@@ -187,7 +187,9 @@ If the provider times out or returns invalid data, the response is `{"available"
 | POST | `/auth/logout` | authenticated |
 | GET / PATCH | `/users/me` | authenticated |
 | POST | `/users/me/password` | authenticated |
-| GET | `/users` | Admin (PM: `?role=DEVELOPER` only, for assignment) |
+| GET | `/users` | Admin |
+| GET | `/users/developers` | PM, Admin (active developers, for assignment) |
+| GET | `/users/{id}` | Admin |
 | PATCH | `/users/{id}/role` | Admin |
 | PATCH | `/users/{id}/status` | Admin |
 | GET | `/bugs` | authenticated (filters, pagination, sort) |

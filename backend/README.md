@@ -29,12 +29,15 @@ source .venv/bin/activate          # Windows: .venv\Scripts\activate
 pip install -r requirements-dev.txt
 ```
 
-## 4. Migrate and run
+## 4. Migrate, create the first admin, and run
 
 ```bash
 alembic upgrade head
+python -m scripts.seed_admin        # uses ADMIN_EMAIL / ADMIN_PASSWORD from .env
 uvicorn app.main:app --reload --port 8000
 ```
+
+In Swagger, call `POST /api/v1/auth/login`, copy `access_token`, click **Authorize**, and paste it.
 
 - Swagger UI: http://localhost:8000/docs
 - Liveness: http://localhost:8000/health

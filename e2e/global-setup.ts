@@ -13,6 +13,9 @@ export default function globalSetup() {
       stdio: ['ignore', 'pipe', 'inherit'],
     }).toString()
 
+  // Full rebuild (all tables, users included) so every run starts from an identical state — previously only bugs
+  // were reset and accounts created by earlier runs accumulated (defect P8-1). Also re-verifies the migrations.
+  run('-m', 'alembic', 'downgrade', 'base')
   run('-m', 'alembic', 'upgrade', 'head')
   process.stdout.write(run('-m', 'scripts.seed_demo', '--reset'))
   process.stdout.write(run('-m', 'scripts.seed_admin'))

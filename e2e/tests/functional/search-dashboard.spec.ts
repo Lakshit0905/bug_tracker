@@ -43,6 +43,7 @@ test.describe('Search and filtering', () => {
     await bugList.goto()
     await page.getByTestId('sort-priority').click() // desc
     await expect(page).toHaveURL(/sort=priority/)
+    await bugList.settled() // rows are read once below (no auto-retry), so wait for the re-sorted results
     const ranks = { Low: 1, Medium: 2, High: 3, Critical: 4 } as Record<string, number>
     const shown = (await bugList.rows().locator('td:nth-child(5)').allInnerTexts()).map((t) => ranks[t.trim()])
     expect(shown).toEqual([...shown].sort((a, b) => b - a))

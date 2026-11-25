@@ -1,7 +1,8 @@
 /**
  * Charts follow the dataviz method: thin marks (2px lines, 4px rounded bar ends), validated categorical
  * slots 1–3 (CSS vars --series-*, stepped separately for dark mode), recessive grid, legend for ≥2 series,
- * hover tooltip on every chart, text in ink tokens (never the series colour), one y-axis only.
+ * hover tooltip on every chart, text in ink tokens (never the series colour), one y-axis only. Chart animation is off:
+ * the lifecycle rail is the app's single motion moment, and Recharts would ignore prefers-reduced-motion (P8-2).
  */
 import type { ReactNode } from 'react'
 import {
@@ -87,8 +88,8 @@ export function TrendChart({ points }: { points: { date: string; created: number
               <TooltipCard {...props} formatLabel={(l) => new Date(`${l}T00:00:00`).toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' })} />
             )}
           />
-          <Line type="linear" dataKey="created" name="Reported" stroke="var(--series-1)" strokeWidth={2} dot={false} activeDot={{ r: 4, strokeWidth: 2, stroke: 'var(--surface)' }} />
-          <Line type="linear" dataKey="resolved" name="Resolved" stroke="var(--series-2)" strokeWidth={2} dot={false} activeDot={{ r: 4, strokeWidth: 2, stroke: 'var(--surface)' }} />
+          <Line isAnimationActive={false} type="linear" dataKey="created" name="Reported" stroke="var(--series-1)" strokeWidth={2} dot={false} activeDot={{ r: 4, strokeWidth: 2, stroke: 'var(--surface)' }} />
+          <Line isAnimationActive={false} type="linear" dataKey="resolved" name="Resolved" stroke="var(--series-2)" strokeWidth={2} dot={false} activeDot={{ r: 4, strokeWidth: 2, stroke: 'var(--surface)' }} />
         </LineChart>
       </ResponsiveContainer>
     </ChartFrame>
@@ -126,6 +127,7 @@ export function StackedBars({
           <Legend content={() => null} />
           {series.map((s, i) => (
             <Bar
+              isAnimationActive={false}
               key={s.key}
               dataKey={s.key}
               name={s.label}

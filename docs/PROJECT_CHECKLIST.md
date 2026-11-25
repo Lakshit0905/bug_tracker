@@ -75,9 +75,13 @@ Rule: a test is only ticked when it has actually been executed and passed; the e
 - [x] Full campaign: 1,218 / 1,218 passing in one run, backend coverage 99%; v1.0 report with consolidated defect log (`docs/test-reports/v1.0-test-report.md`)
 - [x] Defects P7-1…P7-4 found and fixed (contract, logout replay, stale list, WCAG contrast)
 
-## Phase 8 — Fix defects & release v1.0
-- [ ] Defect log
-- [ ] Release notes v1.0, tag `v1.0.0`
+## Phase 8 — Fix defects & release v1.0 ✅
+- [x] `release/v1.0` cut; versions set to 1.0.0 (backend, frontend, e2e)
+- [x] Release gate: 1,218 / 1,218 on the release branch; back-to-back runs deterministic
+- [x] Gate defects P8-1 (e2e data accumulation), P8-2 (chart motion), P8-3 (stale-results race) fixed
+- [x] Clean-checkout verification from the README instructions
+- [x] Release notes (`docs/releases/v1.0.md`), CHANGELOG, README for the released product, refreshed screenshots
+- [x] Merged to `main`, tagged `v1.0.0`, merged back to `develop`
 
 ## Phase 9 — AI features
 - [ ] Provider abstraction (OpenAI, heuristic, disabled)

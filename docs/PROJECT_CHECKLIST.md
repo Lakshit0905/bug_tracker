@@ -16,51 +16,72 @@ Rule: a test is only ticked when it has actually been executed and passed; the e
 - [x] Git repository initialised, `.gitignore`, `.env.example`
 - [x] Branching strategy & GitHub Issues structure (`docs/04-development-workflow.md`)
 
-## Phase 2 — Database schema and backend setup
-- [ ] FastAPI app factory, config, logging, error envelope
-- [ ] SQLAlchemy models for all tables
-- [ ] Alembic initial migration
-- [ ] ER diagram
-- [ ] `/health` and `/health/ready`
-- [ ] Pytest infrastructure with test database
+## Phase 2 — Database schema and backend setup ✅
+- [x] FastAPI app factory, config (pydantic-settings), structured JSON logging + request IDs, error envelope
+- [x] SQLAlchemy models for all v1 tables (8 tables; AI tables arrive with the v2 migration)
+- [x] Alembic initial migration (reviewed; pg_trgm + role seed added by hand); downgrade verified
+- [x] ER diagram + database design doc (`docs/05-database-design.md`)
+- [x] `/health` and `/health/ready`; Swagger at `/docs`
+- [x] Pytest infrastructure: dedicated test DB, migrations run each session, per-test rollback, data factories
+- [x] 58 tests executed and passing, 97% coverage, ruff clean (`docs/test-reports/phase2-backend.md`)
 
-## Phase 3 — Authentication and RBAC
-- [ ] Register / login / refresh / logout
-- [ ] bcrypt hashing, JWT
-- [ ] `get_current_user`, `require_roles`
-- [ ] Admin seed script
-- [ ] User management endpoints
-- [ ] Tests: auth + permissions
+## Phase 3 — Authentication and RBAC ✅
+- [x] Register / login / refresh (rotation + reuse detection) / logout
+- [x] bcrypt hashing (72-byte guard), JWT with pinned algorithm and required claims
+- [x] `get_current_user`, `require_roles`, `require_capability`; permission matrix in code
+- [x] Login/register/refresh rate limiting (429 + Retry-After)
+- [x] Admin seed script (idempotent)
+- [x] Profile endpoints (view, rename, change password) and admin user management (search, role, activate/deactivate)
+- [x] 266 tests executed and passing, 98% coverage; 4/4 deliberate security mutations caught (`docs/test-reports/phase3-auth-rbac.md`)
+- [x] Live end-to-end check with curl against the dev DB
+- [x] Security design doc (`docs/06-authentication-and-rbac.md`)
 
-## Phase 4 — Core bug management
-- [ ] Bug CRUD + validation
-- [ ] Workflow engine + exhaustive transition tests
-- [ ] Assignment & priority
-- [ ] Comments, history, attachments
-- [ ] Search/filter/sort/pagination
-- [ ] Notifications
-- [ ] Dashboard endpoints
-- [ ] API tests (positive, negative, boundary, schema)
+## Phase 4 — Core bug management ✅
+- [x] Bug create / read / edit with role + ownership + status rules
+- [x] Workflow engine; 432-case exhaustive transition matrix against an independent oracle
+- [x] Assignment (active developers only, reassign vs unassign rules) & PM-only priority
+- [x] Comments, append-only audit history, attachments (allow-list, magic bytes, size limit, safe download)
+- [x] Search: 7 filter types, keyword + bug-key search, rank-aware sorting, pagination
+- [x] Notifications: assignment, status change, comment, reopen; read / read-all / unread count
+- [x] Dashboard: summary, trends, activity, workload; reports (closure, MTTR, reopen rate)
+- [x] Row locking verified under concurrent requests (2 workers)
+- [x] Demo data seed through the real services
+- [x] 982 tests executed and passing, 99% coverage; 7/7 deliberate business-rule mutations caught (`docs/test-reports/phase4-bug-management.md`)
 
-## Phase 5 — Frontend and dashboard
-- [ ] Vite + React + TS + Tailwind scaffold, theme (light/dark)
-- [ ] App shell, sidebar, routing, guards
-- [ ] 12 pages (AI page as placeholder until v2)
-- [ ] Charts, badges, empty/loading/error states, confirm dialogs
+## Phase 5 — Frontend and dashboard ✅
+- [x] Vite 8 + React 19 + TypeScript (strict) + Tailwind 4; design tokens; light, dark and system themes
+- [x] App shell: role-aware sidebar, top bar (search, report bug, theme, user menu), mobile drawer, route guards
+- [x] All 12 pages working against the real API (AI page explains v2.0, with no placeholder data)
+- [x] Lifecycle rail, status/severity/priority badges, charts (validated palette), loading/empty/error states, confirmation dialogs, toasts
+- [x] Typed API client with single-flight token refresh; filters kept in the URL; code-split routes
+- [x] Typecheck, lint (incl. jsx-a11y) and build clean; 18-screen browser run as 4 roles with no console errors or 5xx (`docs/test-reports/phase5-frontend.md`)
+- [x] Defect P5-1 (refresh rate limit signed users out) found, fixed in backend + frontend, regression test added
 
-## Phase 6 — Integration
-- [ ] Frontend ↔ backend wired through typed client
-- [ ] Token refresh flow
-- [ ] Manual smoke test per role
+## Phase 6 — Integration ✅
+- [x] Frontend ↔ backend through the typed client (dev proxy and cross-origin production build)
+- [x] Configurable API origin (`VITE_API_URL`), CORS allow-list, attachment downloads re-based for any origin
+- [x] Token refresh hardened: one refresh per expiry even when a 401 arrives after the refresh has finished
+- [x] Return to the original page after sign-in (defect P6-1 fixed)
+- [x] Isolated e2e stack (own DB + ports), migrations + seed in global setup; Page Objects and fixtures
+- [x] 17 integration tests passing, stable over 3 full runs; deliberate-break checks confirm they catch P5-1, P6-1 and loss of single-flight refresh
+- [x] One-command local start (`scripts/dev.sh`)
 
-## Phase 7 — v1.0 testing
-- [ ] Playwright framework (POM, fixtures, data builders)
-- [ ] E2E suites: login, RBAC, create, assign, transitions, search, dashboard
-- [ ] Coverage report, test execution report
+## Phase 7 — v1.0 testing ✅
+- [x] Playwright framework: 6 projects, Page Objects, fixtures, data arrangers, auto health check
+- [x] Functional suites: login, RBAC (nav + direct URLs + controls), create/edit, assignment, transitions per status × role, search/filter/sort/paginate, dashboard, notifications, user admin
+- [x] Black-box API suite with OpenAPI contract validation, 56-cell authorization matrix, 100% operation coverage
+- [x] Frontend unit tests (Vitest), accessibility (axe, WCAG 2.1 AA, both themes), visual regression
+- [x] Test strategy (`docs/10-test-strategy.md`) and traceability matrix (`docs/11-traceability-matrix.md`)
+- [x] Full campaign: 1,218 / 1,218 passing in one run, backend coverage 99%; v1.0 report with consolidated defect log (`docs/test-reports/v1.0-test-report.md`)
+- [x] Defects P7-1…P7-4 found and fixed (contract, logout replay, stale list, WCAG contrast)
 
-## Phase 8 — Fix defects & release v1.0
-- [ ] Defect log
-- [ ] Release notes v1.0, tag `v1.0.0`
+## Phase 8 — Fix defects & release v1.0 ✅
+- [x] `release/v1.0` cut; versions set to 1.0.0 (backend, frontend, e2e)
+- [x] Release gate: 1,218 / 1,218 on the release branch; back-to-back runs deterministic
+- [x] Gate defects P8-1 (e2e data accumulation), P8-2 (chart motion), P8-3 (stale-results race) fixed
+- [x] Clean-checkout verification from the README instructions
+- [x] Release notes (`docs/releases/v1.0.md`), CHANGELOG, README for the released product, refreshed screenshots
+- [x] Merged to `main`, tagged `v1.0.0`, merged back to `develop`
 
 ## Phase 9 — AI features
 - [ ] Provider abstraction (OpenAI, heuristic, disabled)

@@ -1,0 +1,25 @@
+{
+  "name": "bugtrackr-e2e",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "test": "playwright test --project=api --project=functional --project=integration --project=prod-build --project=a11y",
+    "test:integration": "playwright test --project=integration",
+    "test:prod": "playwright test --project=prod-build",
+    "report": "playwright show-report reports/html",
+    "typecheck": "tsc --noEmit",
+    "test:api": "playwright test --project=api",
+    "test:functional": "playwright test --project=functional",
+    "test:a11y": "playwright test --project=a11y",
+    "test:visual": "playwright test --project=visual"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.14.1",
+    "@playwright/test": "^1.65.1",
+    "@types/node": "^24.19.2",
+    "ajv": "^8.20.0",
+    "ajv-formats": "^3.0.1",
+    "typescript": "5.9"
+  }
+}

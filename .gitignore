@@ -34,3 +34,7 @@ uploads/
 Thumbs.db
 .idea/
 .vscode/
+e2e/reports/
+e2e/.uploads/
+frontend/dist-e2e/
+frontend/coverage/

@@ -86,7 +86,7 @@ Each user has exactly **one** role (sufficient for the scope; a many-to-many `us
 | REOPENED | IN_PROGRESS | Developer (asg) | Must have an assignee. |
 | REOPENED | OPEN | PM | Re-triage / reassignment. |
 
-Any other transition — including same-status "transitions" — is rejected with **HTTP 409 Conflict** and an error body naming the allowed targets. Rules live in one place (`app/services/workflow.py`) and are unit-tested exhaustively (every from/to/role combination).
+Any other transition — including same-status "transitions" — is rejected with **HTTP 409 Conflict** and an error body naming the allowed targets. A valid edge used by the wrong role or a non-assigned developer returns **403**; missing notes/reason return **422** (full table in `docs/07-bug-management.md`). Rules live in one place (`app/services/workflow.py`) and are unit-tested exhaustively (every from/to/role combination).
 
 Additional assignment rules:
 - Assignee must be an **active** user with role `DEVELOPER`.

@@ -37,3 +37,4 @@ Thumbs.db
 e2e/reports/
 e2e/.uploads/
 frontend/dist-e2e/
+frontend/coverage/

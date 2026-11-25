@@ -59,8 +59,7 @@ def require_capability(capability: Capability) -> Callable[[User], User]:
     return _guard
 
 
-def auth_rate_limit(request: Request) -> None:
-    limiter = request.app.state.auth_rate_limiter
+def _rate_limit(request: Request, limiter) -> None:
     client_ip = request.client.host if request.client else "unknown"
     allowed, retry_after = limiter.hit(f"{client_ip}:{request.url.path}")
     if not allowed:
@@ -69,3 +68,13 @@ def auth_rate_limit(request: Request) -> None:
             details={"retry_after_seconds": retry_after},
             headers={"Retry-After": str(retry_after)},
         )
+
+
+def auth_rate_limit(request: Request) -> None:
+    """Strict limit for credential endpoints (login, register)."""
+    _rate_limit(request, request.app.state.auth_rate_limiter)
+
+
+def refresh_rate_limit(request: Request) -> None:
+    """Looser limit for token refresh, which legitimately happens on every page load and in every tab."""
+    _rate_limit(request, request.app.state.refresh_rate_limiter)

@@ -361,3 +361,17 @@ def test_rate_limit_is_per_endpoint(app, client: TestClient):
     login(client, "a@example.com", "x")
     assert login(client, "a@example.com", "x").status_code == 429
     assert register(client).status_code == 201
+
+
+def test_refresh_has_its_own_looser_limit_than_login(app, client: TestClient, db_session: Session):
+    """Regression (P5-1): page reloads refresh the session; they must not hit the password-guessing limit."""
+    app.state.auth_rate_limiter = SlidingWindowRateLimiter(max_requests=2, window_seconds=60)
+    app.state.refresh_rate_limiter = SlidingWindowRateLimiter(max_requests=5, window_seconds=60)
+    user = make_user(db_session)
+    token = login(client, user.email).json()["refresh_token"]
+    for _ in range(4):  # more refreshes than the login limit allows
+        res = client.post(f"{AUTH}/refresh", json={"refresh_token": token})
+        assert res.status_code == 200
+        token = res.json()["refresh_token"]
+    assert client.post(f"{AUTH}/refresh", json={"refresh_token": token}).status_code == 200  # 5th: still allowed
+    assert client.post(f"{AUTH}/refresh", json={"refresh_token": token}).status_code == 429  # 6th: limited

@@ -34,6 +34,7 @@ def create_app() -> FastAPI:
         ],
     )
     app.state.auth_rate_limiter = SlidingWindowRateLimiter(settings.auth_rate_limit_per_minute, 60.0)
+    app.state.refresh_rate_limiter = SlidingWindowRateLimiter(settings.refresh_rate_limit_per_minute, 60.0)
 
     app.add_middleware(
         CORSMiddleware,

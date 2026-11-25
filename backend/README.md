@@ -34,6 +34,7 @@ pip install -r requirements-dev.txt
 ```bash
 alembic upgrade head
 python -m scripts.seed_admin        # uses ADMIN_EMAIL / ADMIN_PASSWORD from .env
+python -m scripts.seed_demo         # optional: demo team + 36 bugs (password Demo12345)
 uvicorn app.main:app --reload --port 8000
 ```
 

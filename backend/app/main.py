@@ -27,6 +27,9 @@ def create_app() -> FastAPI:
         openapi_tags=[
             {"name": "auth", "description": "Registration, login, token refresh and logout"},
             {"name": "users", "description": "Own profile, and user administration (Admin)"},
+            {"name": "bugs", "description": "Bugs, lifecycle, assignment, comments, history, attachments"},
+            {"name": "notifications", "description": "In-app notifications"},
+            {"name": "dashboard", "description": "Statistics, trends, workload, activity and reports"},
             {"name": "health", "description": "Liveness and readiness probes"},
         ],
     )

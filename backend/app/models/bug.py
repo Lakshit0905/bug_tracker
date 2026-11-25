@@ -163,3 +163,7 @@ class Notification(CreatedAtMixin, Base):
     read_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
 
     bug: Mapped[Bug | None] = relationship(lazy="joined")
+
+    @property
+    def bug_key(self) -> str | None:
+        return self.bug.key if self.bug is not None else None

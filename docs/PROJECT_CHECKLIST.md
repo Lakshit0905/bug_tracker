@@ -36,15 +36,17 @@ Rule: a test is only ticked when it has actually been executed and passed; the e
 - [x] Live end-to-end check with curl against the dev DB
 - [x] Security design doc (`docs/06-authentication-and-rbac.md`)
 
-## Phase 4 — Core bug management
-- [ ] Bug CRUD + validation
-- [ ] Workflow engine + exhaustive transition tests
-- [ ] Assignment & priority
-- [ ] Comments, history, attachments
-- [ ] Search/filter/sort/pagination
-- [ ] Notifications
-- [ ] Dashboard endpoints
-- [ ] API tests (positive, negative, boundary, schema)
+## Phase 4 — Core bug management ✅
+- [x] Bug create / read / edit with role + ownership + status rules
+- [x] Workflow engine; 432-case exhaustive transition matrix against an independent oracle
+- [x] Assignment (active developers only, reassign vs unassign rules) & PM-only priority
+- [x] Comments, append-only audit history, attachments (allow-list, magic bytes, size limit, safe download)
+- [x] Search: 7 filter types, keyword + bug-key search, rank-aware sorting, pagination
+- [x] Notifications: assignment, status change, comment, reopen; read / read-all / unread count
+- [x] Dashboard: summary, trends, activity, workload; reports (closure, MTTR, reopen rate)
+- [x] Row locking verified under concurrent requests (2 workers)
+- [x] Demo data seed through the real services
+- [x] 982 tests executed and passing, 99% coverage; 7/7 deliberate business-rule mutations caught (`docs/test-reports/phase4-bug-management.md`)
 
 ## Phase 5 — Frontend and dashboard
 - [ ] Vite + React + TS + Tailwind scaffold, theme (light/dark)

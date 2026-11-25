@@ -4,7 +4,7 @@
 
 A full-stack, role-based defect-tracking platform (React + FastAPI + PostgreSQL) with an AI decision-support layer that suggests — but never decides — categories, priorities, severities, duplicates, summaries and assignees.
 
-> **Current status:** Phase 3 complete (authentication & role-based access control, 266 passing tests). See [`docs/PROJECT_CHECKLIST.md`](docs/PROJECT_CHECKLIST.md).
+> **Current status:** Phase 4 complete — the complete v1.0 backend API (982 passing tests, 99% coverage). Next: the React frontend. See [`docs/PROJECT_CHECKLIST.md`](docs/PROJECT_CHECKLIST.md).
 
 ## Releases
 
@@ -23,6 +23,7 @@ A full-stack, role-based defect-tracking platform (React + FastAPI + PostgreSQL)
 | [04 Development workflow](docs/04-development-workflow.md) | Branching, commits, issues, release gates |
 | [05 Database design](docs/05-database-design.md) | ER diagram, constraints, indexes, migrations |
 | [06 Authentication & RBAC](docs/06-authentication-and-rbac.md) | Token model, security controls, endpoints |
+| [07 Bug management](docs/07-bug-management.md) | Lifecycle errors, editing rules, notifications, search, attachments, dashboard |
 | [Checklist](docs/PROJECT_CHECKLIST.md) | Completed / pending work |
 
 ## Repository layout
@@ -40,4 +41,4 @@ bugtracker/
 
 ## Quick start (backend)
 
-See [`backend/README.md`](backend/README.md): create the databases, `pip install -r requirements-dev.txt`, `alembic upgrade head`, `uvicorn app.main:app --reload`, then `python -m scripts.seed_admin` to create the first administrator, and open http://localhost:8000/docs. Run `pytest` for the test suite.
+See [`backend/README.md`](backend/README.md): create the databases, `pip install -r requirements-dev.txt`, `alembic upgrade head`, `uvicorn app.main:app --reload`, then `python -m scripts.seed_admin` to create the first administrator (optionally `python -m scripts.seed_demo` for demo data), and open http://localhost:8000/docs. Run `pytest` for the test suite.

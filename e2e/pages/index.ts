@@ -50,9 +50,16 @@ export class BugListPage {
   readonly rows = () => this.page.getByTestId('bug-row')
   readonly keyword = () => this.page.getByTestId('filter-keyword')
   readonly range = () => this.page.getByTestId('pagination-range')
-  /** Resolves once the list shows results for the current URL (not the previous query's results). */
+  /**
+   * Resolves once the list shows results for the *current* URL. The panel reports which query it rendered for
+   * (data-query) and whether its rows are left over from a previous query (data-stale); both come from the same
+   * render, so checking them together can't be fooled by the moment between a URL change and the re-render
+   * (defect P8-3).
+   */
   async settled() {
-    await expect(this.page.getByTestId('bug-results')).toHaveAttribute('data-stale', 'false')
+    const panel = this.page.getByTestId('bug-results')
+    await expect(panel).toHaveAttribute('data-query', new URL(this.page.url()).searchParams.toString())
+    await expect(panel).toHaveAttribute('data-stale', 'false')
   }
   row = (key: string) => this.page.locator(`[data-testid="bug-row"][data-bug-key="${key}"]`)
 
@@ -161,11 +168,19 @@ export class UsersPage {
     await this.page.goto('/users')
     await expect(this.page.getByTestId('user-table')).toBeVisible()
   }
+  /** Narrow the list to one person, as an admin would; never assume they're on the first page. */
+  async find(email: string) {
+    await this.page.getByTestId('user-search').fill(email)
+    await expect(this.page.getByTestId('user-row')).toHaveCount(1)
+    await expect(this.row(email)).toBeVisible()
+  }
   async setRole(email: string, roleValue: string) {
+    await this.find(email)
     await this.row(email).getByTestId('role-select').selectOption(roleValue)
     await expect(this.page.getByTestId('toast').last()).toBeVisible()
   }
   async toggleActive(email: string) {
+    await this.find(email)
     await this.row(email).getByTestId('toggle-active').click()
     await this.page.getByTestId('confirm-button').click()
     await expect(this.page.getByTestId('confirm-dialog')).not.toBeVisible()

@@ -1,0 +1,392 @@
+<testsuites id="" name="" tests="181" failures="0" skipped="0" errors="0" time="312.613977">
+<testsuite name="api/auth-users.api.spec.ts" timestamp="2026-11-25T02:02:42.858Z" hostname="api" tests="14" failures="0" skipped="0" time="5.651" errors="0">
+<testcase name="Health › liveness and readiness are documented and healthy" classname="api/auth-users.api.spec.ts" time="0.269">
+</testcase>
+<testcase name="Auth API › register → login → me → refresh → logout round trip" classname="api/auth-users.api.spec.ts" time="0.698">
+</testcase>
+<testcase name="Auth API › replaying a rotated refresh token is detected" classname="api/auth-users.api.spec.ts" time="0.329">
+</testcase>
+<testcase name="Auth API › negative and boundary › register password: 7 characters → 422" classname="api/auth-users.api.spec.ts" time="0.023">
+</testcase>
+<testcase name="Auth API › negative and boundary › register password: 8 characters (minimum) → 201" classname="api/auth-users.api.spec.ts" time="0.293">
+</testcase>
+<testcase name="Auth API › negative and boundary › register password: 72 bytes (maximum) → 201" classname="api/auth-users.api.spec.ts" time="0.291">
+</testcase>
+<testcase name="Auth API › negative and boundary › register password: 73 bytes → 422" classname="api/auth-users.api.spec.ts" time="0.026">
+</testcase>
+<testcase name="Auth API › negative and boundary › register password: no digit → 422" classname="api/auth-users.api.spec.ts" time="0.016">
+</testcase>
+<testcase name="Auth API › negative and boundary › duplicate email (any case) → 409 EMAIL_TAKEN" classname="api/auth-users.api.spec.ts" time="0.022">
+</testcase>
+<testcase name="Auth API › negative and boundary › wrong password and unknown email are indistinguishable" classname="api/auth-users.api.spec.ts" time="0.852">
+</testcase>
+<testcase name="Auth API › negative and boundary › protected endpoint without / with a bad token → 401 with request id" classname="api/auth-users.api.spec.ts" time="0.023">
+</testcase>
+<testcase name="Users API › profile update and password change" classname="api/auth-users.api.spec.ts" time="2.103">
+</testcase>
+<testcase name="Users API › admin search, role change and status change with self-protection" classname="api/auth-users.api.spec.ts" time="0.399">
+</testcase>
+<testcase name="Users API › developer list for assignment contains only active developers" classname="api/auth-users.api.spec.ts" time="0.307">
+</testcase>
+</testsuite>
+<testsuite name="api/authz-matrix.api.spec.ts" timestamp="2026-11-25T02:02:42.858Z" hostname="api" tests="57" failures="0" skipped="0" time="0.74" errors="0">
+<testcase name="list bugs — tester allowed" classname="api/authz-matrix.api.spec.ts" time="0.023">
+</testcase>
+<testcase name="list bugs — dev allowed" classname="api/authz-matrix.api.spec.ts" time="0.014">
+</testcase>
+<testcase name="list bugs — pm allowed" classname="api/authz-matrix.api.spec.ts" time="0.01">
+</testcase>
+<testcase name="list bugs — admin allowed" classname="api/authz-matrix.api.spec.ts" time="0.012">
+</testcase>
+<testcase name="view bug — tester allowed" classname="api/authz-matrix.api.spec.ts" time="0.039">
+</testcase>
+<testcase name="view bug — dev allowed" classname="api/authz-matrix.api.spec.ts" time="0.009">
+</testcase>
+<testcase name="view bug — pm allowed" classname="api/authz-matrix.api.spec.ts" time="0.01">
+</testcase>
+<testcase name="view bug — admin allowed" classname="api/authz-matrix.api.spec.ts" time="0.009">
+</testcase>
+<testcase name="view history — tester allowed" classname="api/authz-matrix.api.spec.ts" time="0.019">
+</testcase>
+<testcase name="view history — dev allowed" classname="api/authz-matrix.api.spec.ts" time="0.009">
+</testcase>
+<testcase name="view history — pm allowed" classname="api/authz-matrix.api.spec.ts" time="0.008">
+</testcase>
+<testcase name="view history — admin allowed" classname="api/authz-matrix.api.spec.ts" time="0.008">
+</testcase>
+<testcase name="create bug — tester allowed" classname="api/authz-matrix.api.spec.ts" time="0.013">
+</testcase>
+<testcase name="create bug — dev denied" classname="api/authz-matrix.api.spec.ts" time="0.009">
+</testcase>
+<testcase name="create bug — pm allowed" classname="api/authz-matrix.api.spec.ts" time="0.013">
+</testcase>
+<testcase name="create bug — admin denied" classname="api/authz-matrix.api.spec.ts" time="0.006">
+</testcase>
+<testcase name="set priority — tester denied" classname="api/authz-matrix.api.spec.ts" time="0.008">
+</testcase>
+<testcase name="set priority — dev denied" classname="api/authz-matrix.api.spec.ts" time="0.01">
+</testcase>
+<testcase name="set priority — pm allowed" classname="api/authz-matrix.api.spec.ts" time="0.021">
+</testcase>
+<testcase name="set priority — admin denied" classname="api/authz-matrix.api.spec.ts" time="0.008">
+</testcase>
+<testcase name="assign — tester denied" classname="api/authz-matrix.api.spec.ts" time="0.009">
+</testcase>
+<testcase name="assign — dev denied" classname="api/authz-matrix.api.spec.ts" time="0.006">
+</testcase>
+<testcase name="assign — pm allowed" classname="api/authz-matrix.api.spec.ts" time="0.012">
+</testcase>
+<testcase name="assign — admin denied" classname="api/authz-matrix.api.spec.ts" time="0.007">
+</testcase>
+<testcase name="comment — tester allowed" classname="api/authz-matrix.api.spec.ts" time="0.021">
+</testcase>
+<testcase name="comment — dev allowed" classname="api/authz-matrix.api.spec.ts" time="0.016">
+</testcase>
+<testcase name="comment — pm allowed" classname="api/authz-matrix.api.spec.ts" time="0.013">
+</testcase>
+<testcase name="comment — admin denied" classname="api/authz-matrix.api.spec.ts" time="0.01">
+</testcase>
+<testcase name="workload — tester denied" classname="api/authz-matrix.api.spec.ts" time="0.008">
+</testcase>
+<testcase name="workload — dev denied" classname="api/authz-matrix.api.spec.ts" time="0.012">
+</testcase>
+<testcase name="workload — pm allowed" classname="api/authz-matrix.api.spec.ts" time="0.023">
+</testcase>
+<testcase name="workload — admin allowed" classname="api/authz-matrix.api.spec.ts" time="0.016">
+</testcase>
+<testcase name="reports — tester denied" classname="api/authz-matrix.api.spec.ts" time="0.017">
+</testcase>
+<testcase name="reports — dev denied" classname="api/authz-matrix.api.spec.ts" time="0.008">
+</testcase>
+<testcase name="reports — pm allowed" classname="api/authz-matrix.api.spec.ts" time="0.02">
+</testcase>
+<testcase name="reports — admin allowed" classname="api/authz-matrix.api.spec.ts" time="0.012">
+</testcase>
+<testcase name="developer list — tester denied" classname="api/authz-matrix.api.spec.ts" time="0.009">
+</testcase>
+<testcase name="developer list — dev denied" classname="api/authz-matrix.api.spec.ts" time="0.008">
+</testcase>
+<testcase name="developer list — pm allowed" classname="api/authz-matrix.api.spec.ts" time="0.01">
+</testcase>
+<testcase name="developer list — admin allowed" classname="api/authz-matrix.api.spec.ts" time="0.008">
+</testcase>
+<testcase name="user admin: search — tester denied" classname="api/authz-matrix.api.spec.ts" time="0.01">
+</testcase>
+<testcase name="user admin: search — dev denied" classname="api/authz-matrix.api.spec.ts" time="0.009">
+</testcase>
+<testcase name="user admin: search — pm denied" classname="api/authz-matrix.api.spec.ts" time="0.008">
+</testcase>
+<testcase name="user admin: search — admin allowed" classname="api/authz-matrix.api.spec.ts" time="0.013">
+</testcase>
+<testcase name="user admin: view user — tester denied" classname="api/authz-matrix.api.spec.ts" time="0.01">
+</testcase>
+<testcase name="user admin: view user — dev denied" classname="api/authz-matrix.api.spec.ts" time="0.008">
+</testcase>
+<testcase name="user admin: view user — pm denied" classname="api/authz-matrix.api.spec.ts" time="0.007">
+</testcase>
+<testcase name="user admin: view user — admin allowed" classname="api/authz-matrix.api.spec.ts" time="0.012">
+</testcase>
+<testcase name="user admin: change role — tester denied" classname="api/authz-matrix.api.spec.ts" time="0.01">
+</testcase>
+<testcase name="user admin: change role — dev denied" classname="api/authz-matrix.api.spec.ts" time="0.009">
+</testcase>
+<testcase name="user admin: change role — pm denied" classname="api/authz-matrix.api.spec.ts" time="0.008">
+</testcase>
+<testcase name="user admin: change role — admin allowed" classname="api/authz-matrix.api.spec.ts" time="0.008">
+</testcase>
+<testcase name="user admin: change status — tester denied" classname="api/authz-matrix.api.spec.ts" time="0.009">
+</testcase>
+<testcase name="user admin: change status — dev denied" classname="api/authz-matrix.api.spec.ts" time="0.007">
+</testcase>
+<testcase name="user admin: change status — pm denied" classname="api/authz-matrix.api.spec.ts" time="0.006">
+</testcase>
+<testcase name="user admin: change status — admin allowed" classname="api/authz-matrix.api.spec.ts" time="0.007">
+</testcase>
+<testcase name="every protected operation rejects anonymous callers with 401" classname="api/authz-matrix.api.spec.ts" time="0.096">
+</testcase>
+</testsuite>
+<testsuite name="api/bugs.api.spec.ts" timestamp="2026-11-25T02:02:42.858Z" hostname="api" tests="19" failures="0" skipped="0" time="0.973" errors="0">
+<testcase name="Bug CRUD › create returns 201 with Location, key and defaults" classname="api/bugs.api.spec.ts" time="0.025">
+</testcase>
+<testcase name="Bug CRUD › create rejects title=abcd with 422" classname="api/bugs.api.spec.ts" time="0.007">
+</testcase>
+<testcase name="Bug CRUD › create rejects title=xxxxxxxxxxxx with 422" classname="api/bugs.api.spec.ts" time="0.007">
+</testcase>
+<testcase name="Bug CRUD › create rejects description=short with 422" classname="api/bugs.api.spec.ts" time="0.007">
+</testcase>
+<testcase name="Bug CRUD › create rejects severity=BLOCKER with 422" classname="api/bugs.api.spec.ts" time="0.006">
+</testcase>
+<testcase name="Bug CRUD › create rejects category=FRONTEND with 422" classname="api/bugs.api.spec.ts" time="0.006">
+</testcase>
+<testcase name="Bug CRUD › create rejects status=CLOSED with 422" classname="api/bugs.api.spec.ts" time="0.006">
+</testcase>
+<testcase name="Bug CRUD › only PMs may set priority on create" classname="api/bugs.api.spec.ts" time="0.018">
+</testcase>
+<testcase name="Bug CRUD › edit: reporter while NEW, other tester forbidden, PM allowed, empty patch 422" classname="api/bugs.api.spec.ts" time="0.385">
+</testcase>
+<testcase name="Bug CRUD › priority and assignment are PM-only and validated" classname="api/bugs.api.spec.ts" time="0.105">
+</testcase>
+<testcase name="Search › filters combine and totals agree with returned items" classname="api/bugs.api.spec.ts" time="0.094">
+</testcase>
+<testcase name="Search › bug key search and literal wildcard characters" classname="api/bugs.api.spec.ts" time="0.037">
+</testcase>
+<testcase name="Search › priority sort uses business rank" classname="api/bugs.api.spec.ts" time="0.019">
+</testcase>
+<testcase name="Search › invalid search {&quot;page&quot;:0} → 422" classname="api/bugs.api.spec.ts" time="0.008">
+</testcase>
+<testcase name="Search › invalid search {&quot;page_size&quot;:101} → 422" classname="api/bugs.api.spec.ts" time="0.006">
+</testcase>
+<testcase name="Search › invalid search {&quot;status&quot;:&quot;DONE&quot;} → 422" classname="api/bugs.api.spec.ts" time="0.006">
+</testcase>
+<testcase name="Search › invalid search {&quot;sort&quot;:&quot;reporter&quot;} → 422" classname="api/bugs.api.spec.ts" time="0.007">
+</testcase>
+<testcase name="Search › invalid search {&quot;created_from&quot;:&quot;2026-02-01&quot;,&quot;created_to&quot;:&quot;2026-01-01&quot;} → 422" classname="api/bugs.api.spec.ts" time="0.005">
+</testcase>
+<testcase name="Workflow › full lifecycle with timestamps, allowed-transitions and error codes" classname="api/bugs.api.spec.ts" time="0.219">
+</testcase>
+</testsuite>
+<testsuite name="api/children-dashboard.api.spec.ts" timestamp="2026-11-25T02:02:42.858Z" hostname="api" tests="8" failures="0" skipped="0" time="0.427" errors="0">
+<testcase name="Comments and history › comments are listed oldest first and audited" classname="api/children-dashboard.api.spec.ts" time="0.046">
+</testcase>
+<testcase name="Comments and history › comment boundaries: empty → 422, 5000 chars → 201, 5001 → 422" classname="api/children-dashboard.api.spec.ts" time="0.037">
+</testcase>
+<testcase name="Attachments › upload, list and download round-trip with safe headers" classname="api/children-dashboard.api.spec.ts" time="0.05">
+</testcase>
+<testcase name="Attachments › rejects disguised, disallowed, empty and oversized files" classname="api/children-dashboard.api.spec.ts" time="0.106">
+</testcase>
+<testcase name="Notifications › unread count, list, mark one, mark all — scoped to the recipient" classname="api/children-dashboard.api.spec.ts" time="0.083">
+</testcase>
+<testcase name="Dashboard and reports › summary totals are internally consistent" classname="api/children-dashboard.api.spec.ts" time="0.017">
+</testcase>
+<testcase name="Dashboard and reports › trends return one zero-filled point per day; range boundaries enforced" classname="api/children-dashboard.api.spec.ts" time="0.06">
+</testcase>
+<testcase name="Dashboard and reports › activity, workload and reports" classname="api/children-dashboard.api.spec.ts" time="0.028">
+</testcase>
+</testsuite>
+<testsuite name="api/zz-coverage.api.spec.ts" timestamp="2026-11-25T02:02:42.858Z" hostname="api" tests="1" failures="0" skipped="0" time="0.001" errors="0">
+<testcase name="every documented API operation is exercised by the black-box suite" classname="api/zz-coverage.api.spec.ts" time="0.001">
+</testcase>
+</testsuite>
+<testsuite name="functional/auth-rbac.spec.ts" timestamp="2026-11-25T02:02:42.858Z" hostname="functional" tests="18" failures="0" skipped="0" time="40.937" errors="0">
+<testcase name="Login › tester signs in through the form and lands on the dashboard" classname="functional/auth-rbac.spec.ts" time="2.639">
+</testcase>
+<testcase name="Login › dev signs in through the form and lands on the dashboard" classname="functional/auth-rbac.spec.ts" time="2.149">
+</testcase>
+<testcase name="Login › pm signs in through the form and lands on the dashboard" classname="functional/auth-rbac.spec.ts" time="2.337">
+</testcase>
+<testcase name="Login › admin signs in through the form and lands on the dashboard" classname="functional/auth-rbac.spec.ts" time="2.397">
+</testcase>
+<testcase name="Login › wrong password shows a clear error and stays on the form" classname="functional/auth-rbac.spec.ts" time="1.286">
+</testcase>
+<testcase name="Login › sign-in button is disabled until both fields are filled" classname="functional/auth-rbac.spec.ts" time="0.86">
+</testcase>
+<testcase name="Login › a signed-in user who opens /login is sent to the dashboard" classname="functional/auth-rbac.spec.ts" time="1.987">
+</testcase>
+<testcase name="Login › registration validates fields before calling the server" classname="functional/auth-rbac.spec.ts" time="1.027">
+</testcase>
+<testcase name="Role-based access in the UI › tester: navigation shows exactly the permitted sections" classname="functional/auth-rbac.spec.ts" time="1.33">
+</testcase>
+<testcase name="Role-based access in the UI › dev: navigation shows exactly the permitted sections" classname="functional/auth-rbac.spec.ts" time="1.743">
+</testcase>
+<testcase name="Role-based access in the UI › pm: navigation shows exactly the permitted sections" classname="functional/auth-rbac.spec.ts" time="2.194">
+</testcase>
+<testcase name="Role-based access in the UI › admin: navigation shows exactly the permitted sections" classname="functional/auth-rbac.spec.ts" time="1.986">
+</testcase>
+<testcase name="Role-based access in the UI › tester opening /users directly sees an access message and no data request is made" classname="functional/auth-rbac.spec.ts" time="1.955">
+</testcase>
+<testcase name="Role-based access in the UI › dev opening /reports directly sees an access message and no data request is made" classname="functional/auth-rbac.spec.ts" time="1.715">
+</testcase>
+<testcase name="Role-based access in the UI › dev opening /bugs/new directly sees an access message and no data request is made" classname="functional/auth-rbac.spec.ts" time="2.076">
+</testcase>
+<testcase name="Role-based access in the UI › admin opening /bugs/new directly sees an access message and no data request is made" classname="functional/auth-rbac.spec.ts" time="1.861">
+</testcase>
+<testcase name="Role-based access in the UI › tester opening /reports directly sees an access message and no data request is made" classname="functional/auth-rbac.spec.ts" time="1.793">
+</testcase>
+<testcase name="Role-based access in the UI › edit, assignee and priority controls follow ownership and role" classname="functional/auth-rbac.spec.ts" time="9.602">
+</testcase>
+</testsuite>
+<testsuite name="functional/bugs.spec.ts" timestamp="2026-11-25T02:02:42.858Z" hostname="functional" tests="21" failures="0" skipped="0" time="66.267" errors="0">
+<testcase name="Report and edit bugs › empty submit shows every required-field message and sends nothing" classname="functional/bugs.spec.ts" time="2.276">
+</testcase>
+<testcase name="Report and edit bugs › title boundary: 4 characters rejected, 5 accepted" classname="functional/bugs.spec.ts" time="2.799">
+</testcase>
+<testcase name="Report and edit bugs › tester never sees the priority field; PM can set it on create" classname="functional/bugs.spec.ts" time="4.819">
+</testcase>
+<testcase name="Report and edit bugs › reporter edits their bug; only changed fields are saved and audited" classname="functional/bugs.spec.ts" time="3.412">
+</testcase>
+<testcase name="Report and edit bugs › closed bugs show no edit button and the edit URL explains why" classname="functional/bugs.spec.ts" time="3.251">
+</testcase>
+<testcase name="Assignment › PM assigns, the developer gets an unread notification, reassignment notifies both" classname="functional/bugs.spec.ts" time="4.471">
+</testcase>
+<testcase name="Assignment › the unassign option is disabled while a bug is being worked on" classname="functional/bugs.spec.ts" time="2.779">
+</testcase>
+<testcase name="Assignment › deactivated developers are not offered for assignment" classname="functional/bugs.spec.ts" time="3.271">
+</testcase>
+<testcase name="Status transitions offered in the UI › NEW as pm → Triage" classname="functional/bugs.spec.ts" time="3.226">
+</testcase>
+<testcase name="Status transitions offered in the UI › NEW as tester → no actions" classname="functional/bugs.spec.ts" time="3.093">
+</testcase>
+<testcase name="Status transitions offered in the UI › OPEN as dev → Start work" classname="functional/bugs.spec.ts" time="2.786">
+</testcase>
+<testcase name="Status transitions offered in the UI › OPEN as dev2 → no actions" classname="functional/bugs.spec.ts" time="2.738">
+</testcase>
+<testcase name="Status transitions offered in the UI › IN_PROGRESS as dev → Resolve" classname="functional/bugs.spec.ts" time="3.104">
+</testcase>
+<testcase name="Status transitions offered in the UI › RESOLVED as tester → Verify &amp; close, Reopen" classname="functional/bugs.spec.ts" time="2.856">
+</testcase>
+<testcase name="Status transitions offered in the UI › RESOLVED as dev → no actions" classname="functional/bugs.spec.ts" time="2.796">
+</testcase>
+<testcase name="Status transitions offered in the UI › REOPENED as pm → Re-triage" classname="functional/bugs.spec.ts" time="2.755">
+</testcase>
+<testcase name="Status transitions offered in the UI › REOPENED as dev → Resume work" classname="functional/bugs.spec.ts" time="3.116">
+</testcase>
+<testcase name="Status transitions offered in the UI › CLOSED as tester2 → Reopen" classname="functional/bugs.spec.ts" time="3.281">
+</testcase>
+<testcase name="Status transitions offered in the UI › CLOSED as admin → no actions" classname="functional/bugs.spec.ts" time="3.245">
+</testcase>
+<testcase name="Status transitions offered in the UI › resolve dialog requires notes; cancelling changes nothing" classname="functional/bugs.spec.ts" time="2.829">
+</testcase>
+<testcase name="Status transitions offered in the UI › the lifecycle indicator tracks the current status" classname="functional/bugs.spec.ts" time="3.364">
+</testcase>
+</testsuite>
+<testsuite name="functional/search-dashboard.spec.ts" timestamp="2026-11-25T02:02:42.858Z" hostname="functional" tests="11" failures="0" skipped="0" time="34.937" errors="0">
+<testcase name="Search and filtering › keyword search narrows the list and is kept in the URL across reloads" classname="functional/search-dashboard.spec.ts" time="3.892">
+</testcase>
+<testcase name="Search and filtering › severity and category filters combine" classname="functional/search-dashboard.spec.ts" time="2.98">
+</testcase>
+<testcase name="Search and filtering › sorting by priority orders rows by business rank" classname="functional/search-dashboard.spec.ts" time="2.839">
+</testcase>
+<testcase name="Search and filtering › bug key search jumps to the exact bug" classname="functional/search-dashboard.spec.ts" time="2.083">
+</testcase>
+<testcase name="Search and filtering › scope buttons, pagination and empty state" classname="functional/search-dashboard.spec.ts" time="3.368">
+</testcase>
+<testcase name="Dashboard › PM sees workload; developer sees their own queue instead" classname="functional/search-dashboard.spec.ts" time="4.582">
+</testcase>
+<testcase name="Dashboard › critical KPI matches the API and links to the filtered list" classname="functional/search-dashboard.spec.ts" time="2.796">
+</testcase>
+<testcase name="Dashboard › trend range buttons change the period shown" classname="functional/search-dashboard.spec.ts" time="2.399">
+</testcase>
+<testcase name="Dashboard › recent activity shows a change moments after it happens" classname="functional/search-dashboard.spec.ts" time="2.464">
+</testcase>
+<testcase name="Notifications and user administration › opening a notification marks it read and navigates to the bug; mark all clears the badge" classname="functional/search-dashboard.spec.ts" time="4.874">
+</testcase>
+<testcase name="Notifications and user administration › admin can search users; cancelling deactivation changes nothing; own row is locked" classname="functional/search-dashboard.spec.ts" time="2.66">
+</testcase>
+</testsuite>
+<testsuite name="a11y/axe.spec.ts" timestamp="2026-11-25T02:02:42.858Z" hostname="a11y" tests="9" failures="0" skipped="0" time="66.147" errors="0">
+<testcase name="light theme › sign-in and registration" classname="a11y/axe.spec.ts" time="4.783">
+</testcase>
+<testcase name="light theme › dashboard, bug list and reports (project manager)" classname="a11y/axe.spec.ts" time="9.59">
+</testcase>
+<testcase name="light theme › bug details, report form and notifications (tester)" classname="a11y/axe.spec.ts" time="13.738">
+</testcase>
+<testcase name="light theme › user management (admin)" classname="a11y/axe.spec.ts" time="4.287">
+</testcase>
+<testcase name="dark theme › sign-in and registration" classname="a11y/axe.spec.ts" time="4.545">
+</testcase>
+<testcase name="dark theme › dashboard, bug list and reports (project manager)" classname="a11y/axe.spec.ts" time="9.869">
+</testcase>
+<testcase name="dark theme › bug details, report form and notifications (tester)" classname="a11y/axe.spec.ts" time="13.177">
+</testcase>
+<testcase name="dark theme › user management (admin)" classname="a11y/axe.spec.ts" time="4.347">
+</testcase>
+<testcase name="the app is fully usable from the keyboard: skip link, menu and dialog" classname="a11y/axe.spec.ts" time="1.811">
+</testcase>
+</testsuite>
+<testsuite name="visual/screens.spec.ts" timestamp="2026-11-25T02:02:42.858Z" hostname="visual" tests="6" failures="0" skipped="0" time="12.678" errors="0">
+<testcase name="light › sign-in page" classname="visual/screens.spec.ts" time="0.971">
+</testcase>
+<testcase name="light › registration with validation errors" classname="visual/screens.spec.ts" time="1.015">
+</testcase>
+<testcase name="light › AI triage (v2.0 introduction) and not-found page" classname="visual/screens.spec.ts" time="4.32">
+</testcase>
+<testcase name="dark › sign-in page" classname="visual/screens.spec.ts" time="0.907">
+</testcase>
+<testcase name="dark › registration with validation errors" classname="visual/screens.spec.ts" time="1.111">
+</testcase>
+<testcase name="dark › AI triage (v2.0 introduction) and not-found page" classname="visual/screens.spec.ts" time="4.354">
+</testcase>
+</testsuite>
+<testsuite name="integration/consistency.spec.ts" timestamp="2026-11-25T02:02:42.858Z" hostname="integration" tests="4" failures="0" skipped="0" time="13.156" errors="0">
+<testcase name="UI, API and database agree › dashboard counts match the API and the filtered bug list" classname="integration/consistency.spec.ts" time="3.668">
+</testcase>
+<testcase name="UI, API and database agree › a bug reported in the UI is immediately searchable and counted on the dashboard" classname="integration/consistency.spec.ts" time="6.449">
+</testcase>
+<testcase name="UI, API and database agree › server-side validation errors appear on the right form field" classname="integration/consistency.spec.ts" time="1.011">
+</testcase>
+<testcase name="UI, API and database agree › opening a bug that does not exist shows a not-found state, not a crash" classname="integration/consistency.spec.ts" time="2.028">
+</testcase>
+</testsuite>
+<testsuite name="integration/lifecycle.spec.ts" timestamp="2026-11-25T02:02:42.858Z" hostname="integration" tests="2" failures="0" skipped="0" time="18.238" errors="0">
+<testcase name="Cross-role bug lifecycle › a bug travels from report to verified fix through tester, PM and developer" classname="integration/lifecycle.spec.ts" time="15.285">
+</testcase>
+<testcase name="Cross-role bug lifecycle › a developer who is not the assignee is offered no workflow actions" classname="integration/lifecycle.spec.ts" time="2.953">
+</testcase>
+</testsuite>
+<testsuite name="integration/session.spec.ts" timestamp="2026-11-25T02:02:42.858Z" hostname="integration" tests="7" failures="0" skipped="0" time="26.069" errors="0">
+<testcase name="Session handling across frontend and backend › expired access token: many failing requests trigger exactly one refresh and all are retried" classname="integration/session.spec.ts" time="2.839">
+</testcase>
+<testcase name="Session handling across frontend and backend › a rate-limited session restore keeps the session for the next attempt (regression P5-1)" classname="integration/session.spec.ts" time="3.718">
+</testcase>
+<testcase name="Session handling across frontend and backend › a deactivated user is signed out on their next action and returns to the same page after sign-in" classname="integration/session.spec.ts" time="3.515">
+</testcase>
+<testcase name="Session handling across frontend and backend › opening a deep link while signed out returns there after sign-in (regression P6-1)" classname="integration/session.spec.ts" time="1.32">
+</testcase>
+<testcase name="Session handling across frontend and backend › signing out revokes the refresh token on the server" classname="integration/session.spec.ts" time="2.338">
+</testcase>
+<testcase name="Session handling across frontend and backend › backend outage shows an actionable error and the page recovers when the API is back" classname="integration/session.spec.ts" time="5.561">
+</testcase>
+<testcase name="Session handling across frontend and backend › a new account starts as tester and gains manager access as soon as an admin promotes it" classname="integration/session.spec.ts" time="6.778">
+</testcase>
+</testsuite>
+<testsuite name="prod-build/cross-origin.spec.ts" timestamp="2026-11-25T02:02:42.858Z" hostname="prod-build" tests="4" failures="0" skipped="0" time="6.851" errors="0">
+<testcase name="Production build against a separate API origin › signs in through the form and loads data cross-origin with CORS" classname="prod-build/cross-origin.spec.ts" time="1.829">
+</testcase>
+<testcase name="Production build against a separate API origin › deep links survive a full page reload (SPA fallback + session restore)" classname="prod-build/cross-origin.spec.ts" time="2.677">
+</testcase>
+<testcase name="Production build against a separate API origin › attachment download works across origins with the bearer token" classname="prod-build/cross-origin.spec.ts" time="2.197">
+</testcase>
+<testcase name="Production build against a separate API origin › the API refuses cross-origin access to origins that are not allow-listed" classname="prod-build/cross-origin.spec.ts" time="0.148">
+</testcase>
+</testsuite>
+</testsuites>

@@ -60,7 +60,9 @@ export function BugListPage() {
     page,
     page_size: pageSize,
   }
-  const { data, isLoading, isError, error, refetch, isFetching } = useBugs(search)
+  const { data, isLoading, isError, error, refetch, isFetching, isPlaceholderData } = useBugs(search)
+  // True while the rows on screen belong to the previous query (kept to avoid flicker).
+  const stale = isPlaceholderData || (isFetching && !isLoading)
 
   /** Filters live in the URL, so any view can be bookmarked or shared. */
   const write = (f: FilterState, extra: Record<string, string> = {}) => {
@@ -92,7 +94,13 @@ export function BugListPage() {
       />
       <BugFilters value={filters} onChange={(f) => write(f)} />
       {/* Previous results stay on screen while a new query loads (no flicker), visibly dimmed so they aren't mistaken for current ones. */}
-      <Panel bodyClassName={`p-0 transition-opacity ${isFetching && !isLoading ? 'opacity-55' : ''}`} aria-busy={isFetching} data-testid="bug-results" data-stale={isFetching && !isLoading}>
+      <Panel
+        bodyClassName={`p-0 transition-opacity ${stale ? 'opacity-55' : ''}`}
+        aria-busy={isFetching}
+        data-testid="bug-results"
+        data-stale={stale}
+        data-query={sp.toString()}
+      >
         {isError ? (
           <ErrorState error={error} onRetry={() => refetch()} />
         ) : isLoading ? (

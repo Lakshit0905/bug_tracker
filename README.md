@@ -4,7 +4,7 @@
 
 A full-stack, role-based defect-tracking platform (React + FastAPI + PostgreSQL) with an AI decision-support layer that suggests — but never decides — categories, priorities, severities, duplicates, summaries and assignees.
 
-> **Current status:** Phase 5 complete — React frontend with all 12 pages on the live API. Next: integration hardening.
+> **Current status:** Phase 6 complete — frontend, backend and database integrated and verified end to end (17 Playwright integration tests). Next: full v1.0 test campaign.
 
 ![Dashboard](docs/screenshots/03-dashboard-pm.png) See [`docs/PROJECT_CHECKLIST.md`](docs/PROJECT_CHECKLIST.md).
 
@@ -27,6 +27,7 @@ A full-stack, role-based defect-tracking platform (React + FastAPI + PostgreSQL)
 | [06 Authentication & RBAC](docs/06-authentication-and-rbac.md) | Token model, security controls, endpoints |
 | [07 Bug management](docs/07-bug-management.md) | Lifecycle errors, editing rules, notifications, search, attachments, dashboard |
 | [08 Frontend](docs/08-frontend.md) | Design system, architecture, session handling, accessibility |
+| [09 Integration](docs/09-integration.md) | Deployment modes, session lifecycle, isolated e2e stack |
 | [Checklist](docs/PROJECT_CHECKLIST.md) | Completed / pending work |
 
 ## Repository layout
@@ -43,6 +44,8 @@ bugtracker/
 ```
 
 ## Quick start
+
+After the one-time setup in `backend/README.md`, `./scripts/dev.sh --seed` starts everything. Or step by step:
 
 Backend:
 

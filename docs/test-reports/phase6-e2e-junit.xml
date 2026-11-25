@@ -1,0 +1,44 @@
+<testsuites id="" name="" tests="17" failures="0" skipped="0" errors="0" time="73.22037999999999">
+<testsuite name="integration/consistency.spec.ts" timestamp="2026-11-25T00:53:16.952Z" hostname="integration" tests="4" failures="0" skipped="0" time="13.943" errors="0">
+<testcase name="UI, API and database agree › dashboard counts match the API and the filtered bug list" classname="integration/consistency.spec.ts" time="4.337">
+</testcase>
+<testcase name="UI, API and database agree › a bug reported in the UI is immediately searchable and counted on the dashboard" classname="integration/consistency.spec.ts" time="6.237">
+</testcase>
+<testcase name="UI, API and database agree › server-side validation errors appear on the right form field" classname="integration/consistency.spec.ts" time="1.02">
+</testcase>
+<testcase name="UI, API and database agree › opening a bug that does not exist shows a not-found state, not a crash" classname="integration/consistency.spec.ts" time="2.349">
+</testcase>
+</testsuite>
+<testsuite name="integration/lifecycle.spec.ts" timestamp="2026-11-25T00:53:16.952Z" hostname="integration" tests="2" failures="0" skipped="0" time="18.271" errors="0">
+<testcase name="Cross-role bug lifecycle › a bug travels from report to verified fix through tester, PM and developer" classname="integration/lifecycle.spec.ts" time="15.442">
+</testcase>
+<testcase name="Cross-role bug lifecycle › a developer who is not the assignee is offered no workflow actions" classname="integration/lifecycle.spec.ts" time="2.829">
+</testcase>
+</testsuite>
+<testsuite name="integration/session.spec.ts" timestamp="2026-11-25T00:53:16.952Z" hostname="integration" tests="7" failures="0" skipped="0" time="26.535" errors="0">
+<testcase name="Session handling across frontend and backend › expired access token: many failing requests trigger exactly one refresh and all are retried" classname="integration/session.spec.ts" time="2.902">
+</testcase>
+<testcase name="Session handling across frontend and backend › a rate-limited session restore keeps the session for the next attempt (regression P5-1)" classname="integration/session.spec.ts" time="3.567">
+</testcase>
+<testcase name="Session handling across frontend and backend › a deactivated user is signed out on their next action and returns to the same page after sign-in" classname="integration/session.spec.ts" time="3.148">
+</testcase>
+<testcase name="Session handling across frontend and backend › opening a deep link while signed out returns there after sign-in (regression P6-1)" classname="integration/session.spec.ts" time="1.376">
+</testcase>
+<testcase name="Session handling across frontend and backend › signing out revokes the refresh token on the server" classname="integration/session.spec.ts" time="2.6">
+</testcase>
+<testcase name="Session handling across frontend and backend › backend outage shows an actionable error and the page recovers when the API is back" classname="integration/session.spec.ts" time="5.519">
+</testcase>
+<testcase name="Session handling across frontend and backend › a new account starts as tester and gains manager access as soon as an admin promotes it" classname="integration/session.spec.ts" time="7.423">
+</testcase>
+</testsuite>
+<testsuite name="prod-build/cross-origin.spec.ts" timestamp="2026-11-25T00:53:16.952Z" hostname="prod-build" tests="4" failures="0" skipped="0" time="5.913" errors="0">
+<testcase name="Production build against a separate API origin › signs in through the form and loads data cross-origin with CORS" classname="prod-build/cross-origin.spec.ts" time="1.576">
+</testcase>
+<testcase name="Production build against a separate API origin › deep links survive a full page reload (SPA fallback + session restore)" classname="prod-build/cross-origin.spec.ts" time="2.121">
+</testcase>
+<testcase name="Production build against a separate API origin › attachment download works across origins with the bearer token" classname="prod-build/cross-origin.spec.ts" time="2.065">
+</testcase>
+<testcase name="Production build against a separate API origin › the API refuses cross-origin access to origins that are not allow-listed" classname="prod-build/cross-origin.spec.ts" time="0.151">
+</testcase>
+</testsuite>
+</testsuites>

@@ -23,11 +23,13 @@ export function RequireAuth({ children }: { children: ReactNode }) {
   return children
 }
 
-/** Signed-in users who open /login or /register go to the dashboard. */
+/** Signed-in users who open /login or /register go back to where they were heading (or the dashboard).
+ *  This guard re-renders the moment sign-in succeeds, so it — not the login form — decides the destination. */
 export function RedirectIfAuthed({ children }: { children: ReactNode }) {
   const { status } = useAuth()
+  const from = (useLocation().state as { from?: string } | null)?.from
   if (status === 'loading') return <FullPageLoader />
-  if (status === 'authenticated') return <Navigate to="/" replace />
+  if (status === 'authenticated') return <Navigate to={from && from.startsWith('/') && !from.startsWith('//') ? from : '/'} replace />
   return children
 }
 

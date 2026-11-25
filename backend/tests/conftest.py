@@ -13,6 +13,7 @@ import os
 os.environ["APP_ENV"] = "test"  # must happen before the app/settings are imported
 os.environ["BCRYPT_ROUNDS"] = "4"  # fast hashing in tests; production default is 12
 os.environ["AUTH_RATE_LIMIT_PER_MINUTE"] = "10000"  # the limiter has its own dedicated tests
+os.environ["REFRESH_RATE_LIMIT_PER_MINUTE"] = "10000"
 os.environ["MAX_UPLOAD_MB"] = "1"  # small limit so the 413 boundary is cheap to test
 
 import tempfile

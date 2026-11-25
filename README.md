@@ -4,7 +4,9 @@
 
 A full-stack, role-based defect-tracking platform (React + FastAPI + PostgreSQL) with an AI decision-support layer that suggests — but never decides — categories, priorities, severities, duplicates, summaries and assignees.
 
-> **Current status:** Phase 4 complete — the complete v1.0 backend API (982 passing tests, 99% coverage). Next: the React frontend. See [`docs/PROJECT_CHECKLIST.md`](docs/PROJECT_CHECKLIST.md).
+> **Current status:** Phase 5 complete — React frontend with all 12 pages on the live API. Next: integration hardening.
+
+![Dashboard](docs/screenshots/03-dashboard-pm.png) See [`docs/PROJECT_CHECKLIST.md`](docs/PROJECT_CHECKLIST.md).
 
 ## Releases
 
@@ -24,6 +26,7 @@ A full-stack, role-based defect-tracking platform (React + FastAPI + PostgreSQL)
 | [05 Database design](docs/05-database-design.md) | ER diagram, constraints, indexes, migrations |
 | [06 Authentication & RBAC](docs/06-authentication-and-rbac.md) | Token model, security controls, endpoints |
 | [07 Bug management](docs/07-bug-management.md) | Lifecycle errors, editing rules, notifications, search, attachments, dashboard |
+| [08 Frontend](docs/08-frontend.md) | Design system, architecture, session handling, accessibility |
 | [Checklist](docs/PROJECT_CHECKLIST.md) | Completed / pending work |
 
 ## Repository layout
@@ -39,6 +42,10 @@ bugtracker/
 └── .github/          CI workflows, issue templates
 ```
 
-## Quick start (backend)
+## Quick start
+
+Backend:
 
 See [`backend/README.md`](backend/README.md): create the databases, `pip install -r requirements-dev.txt`, `alembic upgrade head`, `uvicorn app.main:app --reload`, then `python -m scripts.seed_admin` to create the first administrator (optionally `python -m scripts.seed_demo` for demo data), and open http://localhost:8000/docs. Run `pytest` for the test suite.
+
+Frontend (second terminal): `cd frontend && npm install && npm run dev`, then open http://localhost:5173 and sign in with a demo account (password `Demo12345`).

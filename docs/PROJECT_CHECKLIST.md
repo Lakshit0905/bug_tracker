@@ -48,11 +48,14 @@ Rule: a test is only ticked when it has actually been executed and passed; the e
 - [x] Demo data seed through the real services
 - [x] 982 tests executed and passing, 99% coverage; 7/7 deliberate business-rule mutations caught (`docs/test-reports/phase4-bug-management.md`)
 
-## Phase 5 — Frontend and dashboard
-- [ ] Vite + React + TS + Tailwind scaffold, theme (light/dark)
-- [ ] App shell, sidebar, routing, guards
-- [ ] 12 pages (AI page as placeholder until v2)
-- [ ] Charts, badges, empty/loading/error states, confirm dialogs
+## Phase 5 — Frontend and dashboard ✅
+- [x] Vite 8 + React 19 + TypeScript (strict) + Tailwind 4; design tokens; light, dark and system themes
+- [x] App shell: role-aware sidebar, top bar (search, report bug, theme, user menu), mobile drawer, route guards
+- [x] All 12 pages working against the real API (AI page explains v2.0, with no placeholder data)
+- [x] Lifecycle rail, status/severity/priority badges, charts (validated palette), loading/empty/error states, confirmation dialogs, toasts
+- [x] Typed API client with single-flight token refresh; filters kept in the URL; code-split routes
+- [x] Typecheck, lint (incl. jsx-a11y) and build clean; 18-screen browser run as 4 roles with no console errors or 5xx (`docs/test-reports/phase5-frontend.md`)
+- [x] Defect P5-1 (refresh rate limit signed users out) found, fixed in backend + frontend, regression test added
 
 ## Phase 6 — Integration
 - [ ] Frontend ↔ backend wired through typed client

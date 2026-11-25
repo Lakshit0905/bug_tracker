@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, Request, Response, status
 from sqlalchemy.orm import Session
 
-from app.api.deps import auth_rate_limit, get_current_user
+from app.api.deps import auth_rate_limit, get_current_user, refresh_rate_limit
 from app.db.session import get_db
 from app.models import User
 from app.schemas.auth import LoginRequest, LogoutRequest, RefreshRequest, RegisterRequest, TokenResponse
@@ -55,7 +55,7 @@ def login(payload: LoginRequest, request: Request, db: Session = Depends(get_db)
     response_model=TokenResponse,
     summary="Exchange a refresh token for a new token pair (the old refresh token is revoked)",
     responses=_ERRORS,
-    dependencies=[Depends(auth_rate_limit)],
+    dependencies=[Depends(refresh_rate_limit)],
 )
 def refresh(payload: RefreshRequest, request: Request, db: Session = Depends(get_db)) -> TokenResponse:
     issued = AuthService(db).refresh(payload.refresh_token, user_agent=request.headers.get("user-agent"))

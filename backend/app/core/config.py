@@ -45,7 +45,9 @@ class Settings(BaseSettings):
     jwt_refresh_token_days: int = 7
     jwt_issuer: str = "bugtrackr"
     bcrypt_rounds: int = Field(default=12, ge=4, le=16)
-    auth_rate_limit_per_minute: int = Field(default=10, ge=1)
+    auth_rate_limit_per_minute: int = Field(default=10, ge=1)  # login / register (password guessing)
+    # /auth/refresh is called on every page load; refresh tokens are 384-bit random, so guessing isn't feasible.
+    refresh_rate_limit_per_minute: int = Field(default=60, ge=1)
 
     # First administrator (scripts/seed_admin.py)
     admin_email: str | None = None

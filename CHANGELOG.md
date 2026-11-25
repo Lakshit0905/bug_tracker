@@ -30,5 +30,5 @@ First release: complete manual defect management. See [`docs/releases/v1.0.md`](
 - P8-2: chart animations removed (they ignored *reduce motion* and contradicted the single-motion design rule).
 - P8-3: the bug list exposes which query its rows belong to, so tests (and assistive technology via `aria-busy`) never act on stale results.
 
-[Unreleased]: https://github.com/OWNER/bugtrackr/compare/v1.0.0...HEAD
-[1.0.0]: https://github.com/OWNER/bugtrackr/releases/tag/v1.0.0
+[Unreleased]: https://github.com/Lakshit0905/bug_tracker/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/Lakshit0905/bug_tracker/releases/tag/v1.0.0

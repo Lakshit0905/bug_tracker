@@ -7,7 +7,9 @@
  */
 import type { ApiErrorBody, TokenResponse, ValidationDetail } from '../types/api'
 
-export const API_BASE = '/api/v1'
+/** Same-origin '/api/v1' by default (dev proxy, Nginx). Set VITE_API_URL at build time for a separate API origin. */
+export const API_BASE: string = (import.meta.env.VITE_API_URL as string | undefined)?.replace(/\/$/, '') || '/api/v1'
+const API_PATH = '/api/v1'
 const REFRESH_KEY = 'bt-refresh'
 
 export class ApiError extends Error {
@@ -147,9 +149,11 @@ interface RequestOptions {
 export async function request<T>(path: string, opts: RequestOptions = {}): Promise<T> {
   const { method = 'GET', body, query, form, auth = true, signal } = opts
 
+  let usedToken: string | null = null
   const send = () => {
     const headers: Record<string, string> = { Accept: 'application/json' }
     if (body !== undefined) headers['Content-Type'] = 'application/json'
+    usedToken = accessToken
     if (auth && accessToken) headers.Authorization = `Bearer ${accessToken}`
     return fetch(`${API_BASE}${path}${buildQuery(query)}`, {
       method,
@@ -168,7 +172,12 @@ export async function request<T>(path: string, opts: RequestOptions = {}): Promi
   }
 
   if (res.status === 401 && auth) {
-    if (await refreshSession()) {
+    // If another request already refreshed the session while this one was in flight, just retry with the new
+    // token; only refresh when the token that failed is still the current one. Together with the shared
+    // in-flight promise this guarantees one refresh per expiry, however many requests fail at once.
+    if (usedToken !== null && usedToken !== accessToken) {
+      res = await send()
+    } else if (await refreshSession()) {
       res = await send()
     } else {
       sessionListeners.forEach((fn) => fn())
@@ -182,7 +191,8 @@ export async function request<T>(path: string, opts: RequestOptions = {}): Promi
 
 /** Downloads need the bearer token, so they go through fetch → blob rather than a plain link. */
 export async function downloadFile(path: string, filename: string): Promise<void> {
-  const url = path.startsWith(API_BASE) ? path.slice(API_BASE.length) : path
+  // The API returns download_url as a path ('/api/v1/attachments/…'); re-base it onto API_BASE, which may be absolute.
+  const url = path.startsWith(API_PATH) ? path.slice(API_PATH.length) : path
   const doFetch = () =>
     fetch(`${API_BASE}${url}`, { headers: accessToken ? { Authorization: `Bearer ${accessToken}` } : {} })
   let res = await doFetch()

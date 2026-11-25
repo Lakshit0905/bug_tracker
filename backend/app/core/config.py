@@ -27,7 +27,7 @@ class Settings(BaseSettings):
     app_version: str = "0.4.0"
     app_env: Literal["development", "test", "production"] = "development"
     log_level: str = "INFO"
-    cors_origins: str = "http://localhost:5173,http://localhost:8080"
+    cors_origins: str = "http://localhost:5173,http://localhost:4173,http://localhost:8080"
 
     # Database
     postgres_user: str = "bugtracker"

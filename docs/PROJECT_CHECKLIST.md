@@ -57,10 +57,14 @@ Rule: a test is only ticked when it has actually been executed and passed; the e
 - [x] Typecheck, lint (incl. jsx-a11y) and build clean; 18-screen browser run as 4 roles with no console errors or 5xx (`docs/test-reports/phase5-frontend.md`)
 - [x] Defect P5-1 (refresh rate limit signed users out) found, fixed in backend + frontend, regression test added
 
-## Phase 6 — Integration
-- [ ] Frontend ↔ backend wired through typed client
-- [ ] Token refresh flow
-- [ ] Manual smoke test per role
+## Phase 6 — Integration ✅
+- [x] Frontend ↔ backend through the typed client (dev proxy and cross-origin production build)
+- [x] Configurable API origin (`VITE_API_URL`), CORS allow-list, attachment downloads re-based for any origin
+- [x] Token refresh hardened: one refresh per expiry even when a 401 arrives after the refresh has finished
+- [x] Return to the original page after sign-in (defect P6-1 fixed)
+- [x] Isolated e2e stack (own DB + ports), migrations + seed in global setup; Page Objects and fixtures
+- [x] 17 integration tests passing, stable over 3 full runs; deliberate-break checks confirm they catch P5-1, P6-1 and loss of single-flight refresh
+- [x] One-command local start (`scripts/dev.sh`)
 
 ## Phase 7 — v1.0 testing
 - [ ] Playwright framework (POM, fixtures, data builders)

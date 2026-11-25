@@ -4,7 +4,7 @@
 
 A full-stack, role-based defect-tracking platform (React + FastAPI + PostgreSQL) with an AI decision-support layer that suggests — but never decides — categories, priorities, severities, duplicates, summaries and assignees.
 
-> **Current status:** Phase 6 complete — frontend, backend and database integrated and verified end to end (17 Playwright integration tests). Next: full v1.0 test campaign.
+> **Current status:** Phase 7 complete — v1.0 test campaign: **1,218 automated tests passing**, 99% backend coverage, 100% API operation coverage, 0 WCAG AA violations. Next: v1.0 release.
 
 ![Dashboard](docs/screenshots/03-dashboard-pm.png) See [`docs/PROJECT_CHECKLIST.md`](docs/PROJECT_CHECKLIST.md).
 
@@ -28,6 +28,9 @@ A full-stack, role-based defect-tracking platform (React + FastAPI + PostgreSQL)
 | [07 Bug management](docs/07-bug-management.md) | Lifecycle errors, editing rules, notifications, search, attachments, dashboard |
 | [08 Frontend](docs/08-frontend.md) | Design system, architecture, session handling, accessibility |
 | [09 Integration](docs/09-integration.md) | Deployment modes, session lifecycle, isolated e2e stack |
+| [10 Test strategy](docs/10-test-strategy.md) | Pyramid, techniques, environments, exit criteria |
+| [11 Traceability matrix](docs/11-traceability-matrix.md) | Every requirement → its tests |
+| [v1.0 test report](docs/test-reports/v1.0-test-report.md) | Results, coverage, defect log |
 | [Checklist](docs/PROJECT_CHECKLIST.md) | Completed / pending work |
 
 ## Repository layout

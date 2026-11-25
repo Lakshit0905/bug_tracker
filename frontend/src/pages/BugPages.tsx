@@ -91,7 +91,8 @@ export function BugListPage() {
         description={data ? `${data.total} ${data.total === 1 ? 'bug' : 'bugs'}${filtered ? ' match these filters' : ' in total'}` : 'Loading…'}
       />
       <BugFilters value={filters} onChange={(f) => write(f)} />
-      <Panel bodyClassName="p-0" aria-busy={isFetching}>
+      {/* Previous results stay on screen while a new query loads (no flicker), visibly dimmed so they aren't mistaken for current ones. */}
+      <Panel bodyClassName={`p-0 transition-opacity ${isFetching && !isLoading ? 'opacity-55' : ''}`} aria-busy={isFetching} data-testid="bug-results" data-stale={isFetching && !isLoading}>
         {isError ? (
           <ErrorState error={error} onRetry={() => refetch()} />
         ) : isLoading ? (

@@ -14,7 +14,7 @@ export default defineConfig({
   testDir: './tests',
   outputDir: './test-results',
   timeout: 45_000,
-  expect: { timeout: 8_000 },
+  expect: { timeout: 8_000, toHaveScreenshot: { maxDiffPixelRatio: 0.001, animations: 'disabled' } },
   fullyParallel: false,
   workers: 1, // one shared database; tests create their own data but role/status changes are global
   retries: process.env.CI ? 1 : 0,
@@ -33,6 +33,25 @@ export default defineConfig({
     ...chrome,
   },
   projects: [
+    {
+      name: 'api',
+      testMatch: /api\/.*\.spec\.ts/, // black-box API + contract tests (no browser)
+    },
+    {
+      name: 'functional',
+      testMatch: /functional\/.*\.spec\.ts/,
+      use: { ...devices['Desktop Chrome'], ...chrome, baseURL: E2E.devWebUrl },
+    },
+    {
+      name: 'a11y',
+      testMatch: /a11y\/.*\.spec\.ts/,
+      use: { ...devices['Desktop Chrome'], ...chrome, baseURL: E2E.devWebUrl },
+    },
+    {
+      name: 'visual',
+      testMatch: /visual\/.*\.spec\.ts/,
+      use: { ...devices['Desktop Chrome'], ...chrome, baseURL: E2E.devWebUrl },
+    },
     {
       name: 'integration',
       testMatch: /integration\/.*\.spec\.ts/,

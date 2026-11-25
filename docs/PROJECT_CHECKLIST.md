@@ -66,10 +66,14 @@ Rule: a test is only ticked when it has actually been executed and passed; the e
 - [x] 17 integration tests passing, stable over 3 full runs; deliberate-break checks confirm they catch P5-1, P6-1 and loss of single-flight refresh
 - [x] One-command local start (`scripts/dev.sh`)
 
-## Phase 7 — v1.0 testing
-- [ ] Playwright framework (POM, fixtures, data builders)
-- [ ] E2E suites: login, RBAC, create, assign, transitions, search, dashboard
-- [ ] Coverage report, test execution report
+## Phase 7 — v1.0 testing ✅
+- [x] Playwright framework: 6 projects, Page Objects, fixtures, data arrangers, auto health check
+- [x] Functional suites: login, RBAC (nav + direct URLs + controls), create/edit, assignment, transitions per status × role, search/filter/sort/paginate, dashboard, notifications, user admin
+- [x] Black-box API suite with OpenAPI contract validation, 56-cell authorization matrix, 100% operation coverage
+- [x] Frontend unit tests (Vitest), accessibility (axe, WCAG 2.1 AA, both themes), visual regression
+- [x] Test strategy (`docs/10-test-strategy.md`) and traceability matrix (`docs/11-traceability-matrix.md`)
+- [x] Full campaign: 1,218 / 1,218 passing in one run, backend coverage 99%; v1.0 report with consolidated defect log (`docs/test-reports/v1.0-test-report.md`)
+- [x] Defects P7-1…P7-4 found and fixed (contract, logout replay, stale list, WCAG contrast)
 
 ## Phase 8 — Fix defects & release v1.0
 - [ ] Defect log

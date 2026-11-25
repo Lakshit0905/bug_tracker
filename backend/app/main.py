@@ -3,6 +3,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from app.api import openapi as openapi_docs
 from app.api.v1.router import api_router
 from app.api.v1.routes import health
 from app.core.config import get_settings
@@ -49,6 +50,7 @@ def create_app() -> FastAPI:
 
     app.include_router(health.router)
     app.include_router(api_router, prefix=API_PREFIX)
+    openapi_docs.install(app)
     return app
 
 

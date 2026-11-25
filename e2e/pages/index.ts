@@ -50,6 +50,10 @@ export class BugListPage {
   readonly rows = () => this.page.getByTestId('bug-row')
   readonly keyword = () => this.page.getByTestId('filter-keyword')
   readonly range = () => this.page.getByTestId('pagination-range')
+  /** Resolves once the list shows results for the current URL (not the previous query's results). */
+  async settled() {
+    await expect(this.page.getByTestId('bug-results')).toHaveAttribute('data-stale', 'false')
+  }
   row = (key: string) => this.page.locator(`[data-testid="bug-row"][data-bug-key="${key}"]`)
 
   async goto(query = '') {

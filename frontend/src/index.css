@@ -16,7 +16,7 @@
   --line-strong: #c9d1db;
   --ink: #1b2230;
   --ink-2: #4f596b;
-  --ink-3: #7a8497;
+  --ink-3: #5d687a; /* ≥4.5:1 on --sunken (was #7a8497, 3.3:1 — WCAG fail, P7-4) */
   --accent: #0f7a6c;
   --accent-hover: #0c6559;
   --accent-soft: #e3f3f0;
@@ -28,12 +28,12 @@
   --success-soft: #e6f4ec;
 
   /* lifecycle */
-  --st-new: #64748b;
-  --st-open: #2a78d6;
-  --st-progress: #6250d6;
-  --st-resolved: #0f8a6c;
-  --st-reopened: #d9622b;
-  --st-closed: #8a93a3;
+  --st-new: #556274;
+  --st-open: #1d62b8;
+  --st-progress: #5643c7;
+  --st-resolved: #0a6f57;
+  --st-reopened: #a8471a;
+  --st-closed: #5e6878; /* status hues double as badge text: all ≥4.5:1 on their tinted badge */
 
   /* severity (status palette) */
   --sev-low: #7a8497;
@@ -74,7 +74,7 @@
   --st-progress: #9085e9;
   --st-resolved: #2bb39f;
   --st-reopened: #ef8a55;
-  --st-closed: #6f7a8c;
+  --st-closed: #98a2b3; /* was #6f7a8c, 3.45:1 on badge — WCAG fail */
 
   --sev-low: #8b96a8;
   --sev-medium: #fab219;

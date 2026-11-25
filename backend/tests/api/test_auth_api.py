@@ -375,3 +375,19 @@ def test_refresh_has_its_own_looser_limit_than_login(app, client: TestClient, db
         token = res.json()["refresh_token"]
     assert client.post(f"{AUTH}/refresh", json={"refresh_token": token}).status_code == 200  # 5th: still allowed
     assert client.post(f"{AUTH}/refresh", json={"refresh_token": token}).status_code == 429  # 6th: limited
+
+
+def test_replaying_a_signed_out_token_is_not_treated_as_theft(client: TestClient, db_session: Session):
+    """Regression (P7-2): after logout, a stale refresh token is just invalid — it must not kill other sessions."""
+    user = make_user(db_session)
+    device_a = login(client, user.email).json()
+    device_b = login(client, user.email).json()
+    client.post(
+        f"{AUTH}/logout",
+        json={"refresh_token": device_a["refresh_token"]},
+        headers={"Authorization": f"Bearer {device_a['access_token']}"},
+    )
+    replay = client.post(f"{AUTH}/refresh", json={"refresh_token": device_a["refresh_token"]})
+    assert replay.status_code == 401
+    assert replay.json()["error"]["code"] == "INVALID_REFRESH_TOKEN"
+    assert client.post(f"{AUTH}/refresh", json={"refresh_token": device_b["refresh_token"]}).status_code == 200

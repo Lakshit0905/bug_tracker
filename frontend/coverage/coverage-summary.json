@@ -1,0 +1,4 @@
+{"total": {"lines":{"total":132,"covered":110,"skipped":0,"pct":83.33},"statements":{"total":156,"covered":126,"skipped":0,"pct":80.76},"functions":{"total":28,"covered":20,"skipped":0,"pct":71.42},"branches":{"total":120,"covered":96,"skipped":0,"pct":80},"branchesTrue":{"total":0,"covered":0,"skipped":0,"pct":100}}
+,"/home/claude/bugtracker/frontend/src/api/client.ts": {"lines":{"total":93,"covered":73,"skipped":0,"pct":78.49},"functions":{"total":18,"covered":12,"skipped":0,"pct":66.66},"statements":{"total":109,"covered":83,"skipped":0,"pct":76.14},"branches":{"total":77,"covered":61,"skipped":0,"pct":79.22}}
+,"/home/claude/bugtracker/frontend/src/lib/format.ts": {"lines":{"total":39,"covered":37,"skipped":0,"pct":94.87},"functions":{"total":10,"covered":8,"skipped":0,"pct":80},"statements":{"total":47,"covered":43,"skipped":0,"pct":91.48},"branches":{"total":43,"covered":35,"skipped":0,"pct":81.39}}
+}

@@ -1,8 +1,11 @@
 import { execFileSync } from 'node:child_process'
+import { rmSync } from 'node:fs'
+import { OPS_LOG } from './fixtures/contract'
 import { E2E } from './data/env'
 
 /** Rebuild the e2e database from migrations and load the demo team, so every run starts from the same state. */
 export default function globalSetup() {
+  rmSync(OPS_LOG, { force: true }) // fresh endpoint-coverage log for this run
   const run = (...args: string[]) =>
     execFileSync(E2E.python, args, {
       cwd: E2E.backendDir,

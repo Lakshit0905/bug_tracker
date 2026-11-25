@@ -114,8 +114,10 @@ class AuthService:
     def logout(self, user: User, raw_refresh_token: str) -> None:
         stored = self.tokens.get_by_hash(hash_refresh_token(raw_refresh_token), for_update=True)
         # Idempotent, and never reveals whether a token belongs to someone else.
-        if stored is not None and stored.user_id == user.id and stored.revoked_at is None:
-            stored.revoked_at = datetime.now(UTC)
+        # The row is deleted rather than marked revoked: "revoked" means "rotated", and presenting a rotated token
+        # is treated as theft (all sessions killed). A token that was simply signed out must not trigger that.
+        if stored is not None and stored.user_id == user.id:
+            self.db.delete(stored)
             self.db.commit()
         logger.info("logout", extra={"user_id": user.id})
 

@@ -37,7 +37,16 @@ def auth_headers(user: User) -> dict[str, str]:
 
 
 def make_bug(db: Session, reporter: User, **overrides) -> Bug:
+    """Insert a bug directly in any state (test setup only — the API tests drive real transitions).
+    Supplies the fields the DB constraints require for advanced statuses."""
     n = next(_seq)
+    status = overrides.get("status", BugStatus.NEW)
+    if status in (BugStatus.RESOLVED, BugStatus.CLOSED):
+        overrides.setdefault("resolution_notes", "Fixed in test setup")
+    if status == BugStatus.CLOSED:
+        from datetime import UTC, datetime
+
+        overrides.setdefault("closed_at", datetime.now(UTC))
     bug = Bug(
         title=overrides.pop("title", f"Sample bug number {n}"),
         description=overrides.pop("description", "A sufficiently long description of the defect."),

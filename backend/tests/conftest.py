@@ -13,8 +13,14 @@ import os
 os.environ["APP_ENV"] = "test"  # must happen before the app/settings are imported
 os.environ["BCRYPT_ROUNDS"] = "4"  # fast hashing in tests; production default is 12
 os.environ["AUTH_RATE_LIMIT_PER_MINUTE"] = "10000"  # the limiter has its own dedicated tests
+os.environ["MAX_UPLOAD_MB"] = "1"  # small limit so the 413 boundary is cheap to test
+
+import tempfile
+
+os.environ["UPLOAD_DIR"] = tempfile.mkdtemp(prefix="bugtrackr-test-uploads-")
 
 from collections.abc import Generator, Iterator
+from dataclasses import dataclass
 from pathlib import Path
 
 import pytest
@@ -27,6 +33,7 @@ from sqlalchemy.orm import Session
 from app.core.config import get_settings
 from app.db.session import get_db
 from app.main import create_app
+from app.models import User
 
 BACKEND_DIR = Path(__file__).resolve().parents[1]
 
@@ -86,3 +93,28 @@ def app(db_session: Session):
 def client(app) -> Iterator[TestClient]:
     with TestClient(app) as test_client:
         yield test_client
+
+
+@dataclass
+class Team:
+    pm: User
+    tester: User
+    tester2: User
+    dev: User
+    dev2: User
+    admin: User
+
+
+@pytest.fixture
+def team(db_session: Session) -> Team:
+    from app.core.enums import RoleName
+    from tests.factories import make_user
+
+    return Team(
+        pm=make_user(db_session, RoleName.PROJECT_MANAGER, full_name="Pat Manager"),
+        tester=make_user(db_session, RoleName.TESTER, full_name="Tess Tester"),
+        tester2=make_user(db_session, RoleName.TESTER, full_name="Tom Tester"),
+        dev=make_user(db_session, RoleName.DEVELOPER, full_name="Dana Developer"),
+        dev2=make_user(db_session, RoleName.DEVELOPER, full_name="Dev Two"),
+        admin=make_user(db_session, RoleName.ADMIN, full_name="Ada Admin"),
+    )
